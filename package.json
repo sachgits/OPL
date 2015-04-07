@@ -1,10 +1,9 @@
 {
   "name": "OPL",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "main": "public/javascripts/app.js",
+
   "dependencies": {
     "body-parser": "~1.12.0",
     "cookie-parser": "~1.3.4",
@@ -13,5 +12,26 @@
     "express": "~4.12.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
+    "react": "0.13.1",
+    "react-router": "latest",
+    "passport": "latest",
+    "passport-local": "latest",
+    "express-session": "latest"
+  },
+  "devDependencies": {
+    "reactify": "^0.15.2",
+    "jest-cli": "~0.1.17",
+    "browserify": "^6.2.0",
+    "watchify": "^2.1.1",
+    "envify": "^3.0.0",
+    "uglify-js": "~2.4.15"
+  },
+  "start": "watchify -o public/javascripts/bundle.js -v -d -e public/javascripts/app.js",
+  "build": "browserify . -t [envify --NODE_ENV=development] | uglifyjs -cm > public/javascripts/bundle.min.js",
+    "test": "jest"
+},
+  "browserify": {"transform":["reactify", "envify"]},
+  "test": {
+    "rootDir": "./public/javascripts"
   }
 }
